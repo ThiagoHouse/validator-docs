@@ -265,4 +265,22 @@ final class TestValidator extends ValidatorTestCase
         );
         $this->assertTrue($correct->passes());
     }
+
+    /** @test **/
+    public function validatecrefito()
+    {
+        $correct = Validator::make(
+            ['certo' => '111111-F'],
+            ['certo' => 'crefito']
+        );
+
+        $incorrect = Validator::make(
+            ['errado' => '91111-1111'],
+            ['errado' => 'crefito']
+        );
+
+        $this->assertTrue($correct->passes());
+
+        $this->assertTrue($incorrect->fails());
+    }
 }
