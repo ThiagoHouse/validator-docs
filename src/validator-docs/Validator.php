@@ -12,6 +12,7 @@ use geekcom\ValidatorDocs\Rules\Cpf;
 use geekcom\ValidatorDocs\Rules\Cnpj;
 use geekcom\ValidatorDocs\Rules\Cnh;
 use geekcom\ValidatorDocs\Rules\Certidao;
+use geekcom\ValidatorDocs\Rules\Crefito;
 
 use function preg_match;
 
@@ -102,5 +103,17 @@ class Validator extends BaseValidator
         $certidao = new Certidao();
 
         return $certidao->validateCertidao($attribute, $value);
+    }
+
+    protected function validateFormatoCrefito($attribute, $value): bool
+    {
+        return preg_match('/[0-9]{6}F/', $value) > 0;
+    }
+
+    protected function validateCrefito($attribute, $value): bool
+    {
+        $crefito = new Crefito();
+
+        return $crefito->validateCrefito($attribute, $value);
     }
 }
